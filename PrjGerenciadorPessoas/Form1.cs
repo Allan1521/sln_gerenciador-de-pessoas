@@ -42,40 +42,96 @@ namespace PrjGerenciadorPessoas
         private void btnVerPessoa_Click(object sender, EventArgs e)
         {
             //lblMensagem.Text = $"{pessoa.Nome} - {pessoa.getIdadeFormatada()}";
-            for(int contador = 0; contador < this.pessoas.Count; contador++)
-            {
-                lblMensagem.Text = $"{lblMensagem.Text}\n {this.pessoas[contador].Nome}";
-            }
+            //for (int contador = 0; contador < this.pessoa.Count; contador++)
+            //{
+            //  lblmensagem.Text = $*{lblMensagem.Text}\n{this.pessoa[contador].Nome}";
+            //}
+
+
             foreach (var item in pessoas)
             {
                 lblMensagem.Text = $"{lblMensagem.Text}\n {pessoa.Nome}";
             }
         }
 
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            DialogResult apagarLista = MessageBox.Show("Tem certeza que deseja limpar a lista de pessoas?",
+                "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
+            if (apagarLista == DialogResult.Yes)
+            {
+                pessoas.Clear();
+                lstPessoas.Items.Clear();
+
+                txtIdade.Clear();
+                txtNome.Clear();
+                txtNome.Focus();
+
+            }
+        }
+
         private void btnCriarPessoa_Click(object sender, EventArgs e)
-        {   
+        {
             lblMensagem.Text = String.Empty;
-            //try
-            //{
-                 string nome = txtNome.Text;
-                 int idade = Convert.ToInt32(txtIdade.Text);//pode lançar exception
+            try
+            {
+                string nome = txtNome.Text;
+                int idade = Convert.ToInt32(txtIdade.Text);//pode lançar exception
 
                 pessoa = new Pessoa(nome, idade);//atribuir
-                
                 this.pessoas.Add(pessoa);//Adicionar  pessoa
-                                    
-                           }
-            //catch (Exception ex)
-            //{
-            //    lblMensagem.Text = ex.Message;
-                
-            //}
+                lstPessoas.Items.Add(pessoa);//adicionar a pessoa criada na listBox
 
-            txtNome.Clear(); 
+            }
+            catch (FormatException)
+            {
+                lblMensagem.Text = "Apenas números podem ser utilizados no campo idade!";
+            }
+            catch (Exception ex)
+            {
+                lblMensagem.Text = ex.Message;
+
+            }
+
+            txtNome.Clear();
             txtIdade.Clear();
             txtIdade.Focus();
+
+            MessageBox.Show("Pessoa adicionada com sucesso!", "info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            lblMensagem.Text = "Pessoa adicionada com sucesso!";
         }
-      
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+            if (lstPessoas.SelectedItems == null)
+            {
+
+                MessageBox.Show("Não há itens selecionar na lista",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                lblMensagem.Text = "Não há itens selecionados na lista";
+
+            }
+            else
+            {
+                lstPessoas.Item.Remove(lslPessoas.Selected)
+            }
+
+
+            private void txtNome_TextChanged(object sender, EventArgs e)
+            {
+
+            }
+
+            private void txtIdade_TextChanged(object sender, EventArgs e)
+            {
+
+            }
+
+        }
+
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
 
@@ -86,5 +142,13 @@ namespace PrjGerenciadorPessoas
 
         }
 
+        private void textSalvar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-}

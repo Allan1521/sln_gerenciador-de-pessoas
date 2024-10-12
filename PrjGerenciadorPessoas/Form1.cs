@@ -116,7 +116,7 @@ namespace PrjGerenciadorPessoas
             }
             else
             {
-                lstPessoas.Item.Remove(lslPessoas.Selected)
+                lstPessoas.Item.Remove(lslPessoas.Selected);
             }
 
 

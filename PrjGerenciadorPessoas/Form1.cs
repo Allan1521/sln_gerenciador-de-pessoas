@@ -4,7 +4,7 @@ using Allan1521.PrjHelloWord.Models;
 namespace PrjGerenciadorPessoas
 {
     public partial class Form1 : Form
-    {   
+    {
         //declaramos class
         private Pessoa pessoa;
         private List<Pessoa> pessoas = new List<Pessoa>();  //Criando o objeto lista de pessoas 
@@ -35,7 +35,7 @@ namespace PrjGerenciadorPessoas
             //    lblMensagem.Text = $"{lblMensagem.Text}\n {pessoa.Nome}";
             //}
         }
-                    //BOTÃO LIMPAR CAIXAS DADOS DA PESSOAS
+        //BOTÃO LIMPAR CAIXAS DADOS DA PESSOAS
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             ResetForm();
@@ -95,7 +95,7 @@ namespace PrjGerenciadorPessoas
                 ResetForm();
             }
         }
-                    //BOTÃO DE ATUALIZAR E SALVAR PESSOA
+        //BOTÃO DE ATUALIZAR E SALVAR PESSOA
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (lstPessoas.SelectedItem != null) //verificar se há um item na lista 
@@ -147,7 +147,7 @@ namespace PrjGerenciadorPessoas
 
         private void btnGerarDoc_Click(object sender, EventArgs e)
         {
-        //    string conteudoArquivo = $"Nome: {this.pessoa.Nome} - Idade: {this.pessoa.getIdadeFormatada()}";
+            //    string conteudoArquivo = $"Nome: {this.pessoa.Nome} - Idade: {this.pessoa.getIdadeFormatada()}";
 
             try //É onde você coloca o código que pode gerar uma exceção.
                 //Se tudo correr bem, o código dentro do bloco try
@@ -195,7 +195,7 @@ namespace PrjGerenciadorPessoas
 
             for (int i = 0; i < lstPessoas.Items.Count - 1; i++)
             {
-                p = (Pessoa) lstPessoas.Items[i];
+                p = (Pessoa)lstPessoas.Items[i];
                 linha = $"{linha}" + $"{p.Nome} - {p.getIdadeFormatada()}\n";
             }
             File.WriteAllText("relatorio/relatorio.txt", linha);
@@ -207,6 +207,6 @@ namespace PrjGerenciadorPessoas
             ResetForm();
         }
     }
-   
+
 }
 

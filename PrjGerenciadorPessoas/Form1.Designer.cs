@@ -62,7 +62,7 @@
             btnGerarDoc.Location = new Point(549, 315);
             btnGerarDoc.Name = "btnGerarDoc";
             btnGerarDoc.Size = new Size(196, 37);
-            btnGerarDoc.TabIndex = 20;
+            btnGerarDoc.TabIndex = 7;
             btnGerarDoc.Text = "&Gerar Documento";
             btnGerarDoc.UseVisualStyleBackColor = true;
             btnGerarDoc.Click += btnGerarDoc_Click;
@@ -75,7 +75,7 @@
             btnExcluirLista.Location = new Point(787, 315);
             btnExcluirLista.Name = "btnExcluirLista";
             btnExcluirLista.Size = new Size(124, 44);
-            btnExcluirLista.TabIndex = 21;
+            btnExcluirLista.TabIndex = 8;
             btnExcluirLista.Text = "E&xcluir Lista";
             btnExcluirLista.UseVisualStyleBackColor = false;
             btnExcluirLista.Click += btnExcluirLista_Click;
@@ -105,7 +105,7 @@
             btnLimpar.Location = new Point(210, 256);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(285, 44);
-            btnLimpar.TabIndex = 28;
+            btnLimpar.TabIndex = 6;
             btnLimpar.Text = "&Limpar";
             btnLimpar.UseVisualStyleBackColor = false;
             btnLimpar.Click += btnLimpar_Click;
@@ -118,7 +118,7 @@
             btnExcluir.Location = new Point(51, 256);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(124, 44);
-            btnExcluir.TabIndex = 27;
+            btnExcluir.TabIndex = 5;
             btnExcluir.Text = "&Excluir";
             btnExcluir.UseVisualStyleBackColor = false;
             btnExcluir.Click += btnExcluir_Click;
@@ -130,7 +130,7 @@
             btnSalvar.Location = new Point(371, 186);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(124, 44);
-            btnSalvar.TabIndex = 26;
+            btnSalvar.TabIndex = 4;
             btnSalvar.Text = "&Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
@@ -153,7 +153,7 @@
             txtIdade.Location = new Point(111, 101);
             txtIdade.Name = "txtIdade";
             txtIdade.Size = new Size(100, 34);
-            txtIdade.TabIndex = 24;
+            txtIdade.TabIndex = 1;
             // 
             // txtNome
             // 
@@ -162,7 +162,7 @@
             txtNome.Location = new Point(111, 39);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(371, 34);
-            txtNome.TabIndex = 23;
+            txtNome.TabIndex = 0;
             // 
             // btnCriarPessoa
             // 
@@ -170,7 +170,7 @@
             btnCriarPessoa.Location = new Point(51, 186);
             btnCriarPessoa.Name = "btnCriarPessoa";
             btnCriarPessoa.Size = new Size(124, 44);
-            btnCriarPessoa.TabIndex = 22;
+            btnCriarPessoa.TabIndex = 3;
             btnCriarPessoa.Text = "&Criar Pessoa";
             btnCriarPessoa.UseVisualStyleBackColor = true;
             btnCriarPessoa.Click += btnCriarPessoa_Click;
@@ -182,7 +182,7 @@
             btnVerPessoa.Location = new Point(210, 186);
             btnVerPessoa.Name = "btnVerPessoa";
             btnVerPessoa.Size = new Size(124, 44);
-            btnVerPessoa.TabIndex = 21;
+            btnVerPessoa.TabIndex = 3;
             btnVerPessoa.Text = "&Ver Pessoa";
             btnVerPessoa.UseVisualStyleBackColor = true;
             btnVerPessoa.Click += btnVerPessoa_Click;

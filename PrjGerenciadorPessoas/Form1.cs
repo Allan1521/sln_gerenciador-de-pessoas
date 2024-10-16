@@ -1,4 +1,5 @@
 using Allan1521.PrjHelloWord.Models;
+using Allan1521.PrjHelloWord.Models;
 
 namespace PrjGerenciadorPessoas
 {
@@ -146,13 +147,15 @@ namespace PrjGerenciadorPessoas
 
         private void btnGerarDoc_Click(object sender, EventArgs e)
         {
-            string conteudoArquivo = $"Nome: {this.pessoa.Nome} - Idade: {this.pessoa.getIdadeFormatada()}";
+        //    string conteudoArquivo = $"Nome: {this.pessoa.Nome} - Idade: {this.pessoa.getIdadeFormatada()}";
+
             try //É onde você coloca o código que pode gerar uma exceção.
                 //Se tudo correr bem, o código dentro do bloco try
                 //será executado normalmente e o bloco catch será ignorado.
             {
+                gerarRelatorioLista();
+                //File.WriteAllText("relatorio/relatorio.txt", conteudoArquivo);
 
-                File.WriteAllText("relatorio/relatorio.txt", conteudoArquivo);
 
                 MessageBox.Show("Relatório gerado com sucesso", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -182,5 +185,28 @@ namespace PrjGerenciadorPessoas
 
             ResetForm();
         }
+        private void gerarRelatorioLista()
+        {
+            //lstPessoas.Items //total de pessoas
+            //lacço de repetição
+
+            Pessoa p;
+            string linha = "";
+
+            for (int i = 0; i < lstPessoas.Items.Count - 1; i++)
+            {
+                p = (Pessoa) lstPessoas.Items[i];
+                linha = $"{linha}" + $"{p.Nome} - {p.getIdadeFormatada()}\n";
+            }
+            File.WriteAllText("relatorio/relatorio.txt", linha);
+
+
+            MessageBox.Show("Relatório gerado com sucesso!", "Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            ResetForm();
+        }
     }
+   
 }
+

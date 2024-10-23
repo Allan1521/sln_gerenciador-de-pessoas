@@ -1,5 +1,6 @@
 using Allan1521.PrjHelloWord.Models;
 using Allan1521.PrjHelloWord.Models;
+using System.Text.Json;
 
 namespace PrjGerenciadorPessoas
 {
@@ -12,11 +13,12 @@ namespace PrjGerenciadorPessoas
         public Form1()
         {
             InitializeComponent();
+            lstPessoas.DisplayMember = "Nome";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lstPessoas.DisplayMember = "Nome";
+            cmb_FormRelatorio.Text = "TXT";
         }
 
 
@@ -145,7 +147,7 @@ namespace PrjGerenciadorPessoas
             btnExcluir.Enabled = false;     //deixar inativo o botão
         }
 
-        private void btnGerarDoc_Click(object sender, EventArgs e)
+        private void btnGerarTxt_Click(object sender, EventArgs e)
         {
             //    string conteudoArquivo = $"Nome: {this.pessoa.Nome} - Idade: {this.pessoa.getIdadeFormatada()}";
 
@@ -153,13 +155,18 @@ namespace PrjGerenciadorPessoas
                 //Se tudo correr bem, o código dentro do bloco try
                 //será executado normalmente e o bloco catch será ignorado.
             {
-                gerarRelatorioLista();
-                //File.WriteAllText("relatorio/relatorio.txt", conteudoArquivo);
-
-
-                MessageBox.Show("Relatório gerado com sucesso", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                ResetForm();
+                if (cmb_FormRelatorio.Text == "TXT")
+                {
+                    gerarRelatorio(SerializarParaTxt());
+                }
+                else
+                {
+                    gerarRelatorio(SerializarParaJson());
+                }
+                MessageBox.Show($"Relatótio gerado com sucesso no formato {cmb_FormRelatorio.Text}", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);   
+                    
+              
             }
             catch (DirectoryNotFoundException ex) // É onde você coloca o código
                                                   // que será executado caso ocorra uma exceção no
@@ -177,34 +184,71 @@ namespace PrjGerenciadorPessoas
         }
         private void gerarRelatorio(string conteudo)
         {
-            File.WriteAllText("relatorio/relatorio.txt", conteudo);
+            try
+            {
+                File.WriteAllText("relatorio/relatorio.txt", conteudo);
 
 
-            MessageBox.Show("Relatório gerado com sucesso!", "Info",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Relatório gerado com sucesso!", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            ResetForm();
+                ResetForm();
+
+            }
+            catch  (DirectoryNotFoundException ex) 
+            {
+                MessageBox.Show($")
+            }
+           
         }
-        private void gerarRelatorioLista()
+        private string SerializarParaTxt()
         {
             //lstPessoas.Items //total de pessoas
             //lacço de repetição
 
-            Pessoa p;
+            Pessoa pessoa;
             string linha = "";
 
             for (int i = 0; i < lstPessoas.Items.Count - 1; i++)
             {
-                p = (Pessoa)lstPessoas.Items[i];
-                linha = $"{linha}" + $"{p.Nome} - {p.getIdadeFormatada()}\n";
+                pessoa = (Pessoa)lstPessoas.Items[i]; //casting
+                linha = $"{linha}" + $"{pessoa.Nome} - {pessoa.getIdadeFormatada()}\n";
             }
-            File.WriteAllText("relatorio/relatorio.txt", linha);
+            return linha;
+            //File.WriteAllText("relatorio/relatorio.txt", linha);
 
 
-            MessageBox.Show("Relatório gerado com sucesso!", "Info",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Relatório gerado com sucesso!", "Info",
+            //    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            ResetForm();
+            //ResetForm();
+
+        }
+        private string SerializarParaJson()
+        {
+            //lstPessoas.Items //total de pessoas
+            //lacço de repetição
+
+
+            string json = "";
+            Pessoa pessoa;
+            List<Pessoa> listaPessoas;
+            //declarando uma variável do tipo de pessoas
+            listaPessoas = new List<Pessoa>();
+            //instanciando uma lista de pessoas e atribuindo à variàvel
+            for (int i = 0; i < lstPessoas.Items.Count; i++)
+            {
+                pessoa = (Pessoa)lstPessoas.Items[i]; //casting
+                listaPessoas.Add(pessoa);
+            }
+            json = JsonSerializer.Serialize(listaPessoas,
+                new JsonSerializerOptions { WriteIndented = true });
+            return json;
+        }
+
+        private void lbl_FormRelatorio_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

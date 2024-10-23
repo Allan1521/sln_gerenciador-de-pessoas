@@ -42,11 +42,14 @@
             btnVerPessoa = new Button();
             lblIdade = new Label();
             lblMensagem = new Label();
+            lbl_FormRelatorio = new Label();
+            cmb_FormRelatorio = new ComboBox();
             pnlForm.SuspendLayout();
             SuspendLayout();
             // 
             // lstPessoas
             // 
+            lstPessoas.BackColor = SystemColors.Info;
             lstPessoas.FormattingEnabled = true;
             lstPessoas.ItemHeight = 15;
             lstPessoas.Location = new Point(549, 50);
@@ -59,20 +62,20 @@
             // 
             btnGerarDoc.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnGerarDoc.ForeColor = SystemColors.ActiveCaptionText;
-            btnGerarDoc.Location = new Point(549, 315);
+            btnGerarDoc.Location = new Point(549, 375);
             btnGerarDoc.Name = "btnGerarDoc";
             btnGerarDoc.Size = new Size(196, 37);
             btnGerarDoc.TabIndex = 7;
             btnGerarDoc.Text = "&Gerar Documento";
             btnGerarDoc.UseVisualStyleBackColor = true;
-            btnGerarDoc.Click += btnGerarDoc_Click;
+            btnGerarDoc.Click += btnGerarTxt_Click;
             // 
             // btnExcluirLista
             // 
             btnExcluirLista.BackColor = Color.Red;
             btnExcluirLista.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnExcluirLista.ForeColor = SystemColors.Window;
-            btnExcluirLista.Location = new Point(787, 315);
+            btnExcluirLista.Location = new Point(787, 375);
             btnExcluirLista.Name = "btnExcluirLista";
             btnExcluirLista.Size = new Size(124, 44);
             btnExcluirLista.TabIndex = 8;
@@ -208,11 +211,36 @@
             lblMensagem.Size = new Size(0, 28);
             lblMensagem.TabIndex = 7;
             // 
+            // lbl_FormRelatorio
+            // 
+            lbl_FormRelatorio.AutoSize = true;
+            lbl_FormRelatorio.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl_FormRelatorio.ForeColor = SystemColors.HotTrack;
+            lbl_FormRelatorio.Location = new Point(549, 323);
+            lbl_FormRelatorio.Name = "lbl_FormRelatorio";
+            lbl_FormRelatorio.Size = new Size(189, 28);
+            lbl_FormRelatorio.TabIndex = 26;
+            lbl_FormRelatorio.Text = "Formato Relatório:";
+            lbl_FormRelatorio.Click += lbl_FormRelatorio_Click;
+            // 
+            // cmb_FormRelatorio
+            // 
+            cmb_FormRelatorio.BackColor = SystemColors.Info;
+            cmb_FormRelatorio.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_FormRelatorio.FormattingEnabled = true;
+            cmb_FormRelatorio.Items.AddRange(new object[] { "TXT", "JSON" });
+            cmb_FormRelatorio.Location = new Point(744, 331);
+            cmb_FormRelatorio.Name = "cmb_FormRelatorio";
+            cmb_FormRelatorio.Size = new Size(167, 23);
+            cmb_FormRelatorio.TabIndex = 27;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(932, 487);
+            Controls.Add(cmb_FormRelatorio);
+            Controls.Add(lbl_FormRelatorio);
             Controls.Add(pnlForm);
             Controls.Add(btnExcluirLista);
             Controls.Add(btnGerarDoc);
@@ -243,5 +271,7 @@
         private Button btnVerPessoa;
         private Label lblIdade;
         private Label lblMensagem;
+        private Label lbl_FormRelatorio;
+        private ComboBox cmb_FormRelatorio;
     }
 }

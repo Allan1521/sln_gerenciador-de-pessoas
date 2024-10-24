@@ -1,5 +1,4 @@
 using Allan1521.PrjHelloWord.Models;
-using Allan1521.PrjHelloWord.Models;
 using System.Text.Json;
 
 namespace PrjGerenciadorPessoas
@@ -21,7 +20,6 @@ namespace PrjGerenciadorPessoas
             cmb_FormRelatorio.Text = "TXT";
         }
 
-
         private void btnVerPessoa_Click(object sender, EventArgs e)
         {
             MessageBox.Show($"Nome: {pessoa.Nome}\n Idade: {pessoa.getIdadeFormatada()}", "Dados Pessoais", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -30,7 +28,6 @@ namespace PrjGerenciadorPessoas
             //{
             //  lblmensagem.Text = $*{lblMensagem.Text}\n{this.pessoa[contador].Nome}";
             //}
-
 
             //foreach (var item in pessoas)
             //{
@@ -163,8 +160,7 @@ namespace PrjGerenciadorPessoas
                 {
                     gerarRelatorio(SerializarParaJson());
                 }
-                MessageBox.Show($"Relatótio gerado com sucesso no formato {cmb_FormRelatorio.Text}", "Info",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);   
+                
                     
               
             }
@@ -189,7 +185,7 @@ namespace PrjGerenciadorPessoas
                 File.WriteAllText("relatorio/relatorio.txt", conteudo);
 
 
-                MessageBox.Show("Relatório gerado com sucesso!", "Info",
+                MessageBox.Show($"Relatótio gerado com sucesso no formato {cmb_FormRelatorio.Text}", "Info",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ResetForm();
@@ -197,9 +193,13 @@ namespace PrjGerenciadorPessoas
             }
             catch  (DirectoryNotFoundException ex) 
             {
-                MessageBox.Show($")
+                MessageBox.Show($"Houve um erro na criação do relatório. Pasta não encontrada!");
             }
-           
+            catch (Exception ex)
+            { MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            
+            }
+                    
         }
         private string SerializarParaTxt()
         {
@@ -209,18 +209,17 @@ namespace PrjGerenciadorPessoas
             Pessoa pessoa;
             string linha = "";
 
-            for (int i = 0; i < lstPessoas.Items.Count - 1; i++)
+            for (int i = 0; i < lstPessoas.Items.Count; i++)
             {
-                pessoa = (Pessoa)lstPessoas.Items[i]; //casting
+                pessoa = (Pessoa)lstPessoas.Items[i]; //casting é pra confirma que o objeto pessoa,
+                                                      //jogando tudo relacionado a pessoas dentro da
+                                                      //variável pessoa 
                 linha = $"{linha}" + $"{pessoa.Nome} - {pessoa.getIdadeFormatada()}\n";
             }
             return linha;
             //File.WriteAllText("relatorio/relatorio.txt", linha);
-
-
             //MessageBox.Show("Relatório gerado com sucesso!", "Info",
-            //    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            //MessageBoxButtons.OK, MessageBoxIcon.Information);
             //ResetForm();
 
         }
@@ -232,24 +231,22 @@ namespace PrjGerenciadorPessoas
 
             string json = "";
             Pessoa pessoa;
-            List<Pessoa> listaPessoas;
-            //declarando uma variável do tipo de pessoas
-            listaPessoas = new List<Pessoa>();
-            //instanciando uma lista de pessoas e atribuindo à variàvel
+            
+            List<Pessoa> listaPessoas;  //declarando uma variável do tipo de pessoas
+
+            listaPessoas = new List<Pessoa>();  //instanciando uma lista de pessoas e atribuindo à variàvel
+
             for (int i = 0; i < lstPessoas.Items.Count; i++)
             {
                 pessoa = (Pessoa)lstPessoas.Items[i]; //casting
                 listaPessoas.Add(pessoa);
             }
             json = JsonSerializer.Serialize(listaPessoas,
-                new JsonSerializerOptions { WriteIndented = true });
+                new JsonSerializerOptions { WriteIndented = true }); // é pra fazer a indetação do texto
+                                                                     // deixando organizado linha a limha
             return json;
         }
-
-        private void lbl_FormRelatorio_Click(object sender, EventArgs e)
-        {
-
-        }
+                
     }
 
 }

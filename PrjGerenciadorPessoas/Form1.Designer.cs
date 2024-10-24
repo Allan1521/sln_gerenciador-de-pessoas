@@ -221,7 +221,7 @@
             lbl_FormRelatorio.Size = new Size(189, 28);
             lbl_FormRelatorio.TabIndex = 26;
             lbl_FormRelatorio.Text = "Formato Relatório:";
-            lbl_FormRelatorio.Click += lbl_FormRelatorio_Click;
+            
             // 
             // cmb_FormRelatorio
             // 

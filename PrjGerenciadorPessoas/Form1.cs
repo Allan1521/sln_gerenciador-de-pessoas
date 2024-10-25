@@ -1,5 +1,6 @@
 using Allan1521.PrjHelloWord.Models;
 using System.Text.Json;
+using Newtonsoft.Json; // *Baixado o Pacote Nextonsoft e configurado p/ser visualizado 
 
 namespace PrjGerenciadorPessoas
 {

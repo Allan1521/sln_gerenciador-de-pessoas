@@ -1,6 +1,7 @@
 using Allan1521.PrjHelloWord.Models;
-using System.Text.Json;
+//using System.Text.Json;
 using Newtonsoft.Json; // *Baixado o Pacote Nextonsoft e configurado p/ser visualizado 
+using System.Text.Json;
 
 namespace PrjGerenciadorPessoas
 {
@@ -225,7 +226,9 @@ namespace PrjGerenciadorPessoas
 
         }
         private string SerializarParaJson()
+
         {
+
             //lstPessoas.Items //total de pessoas
             //lacço de repetição
 
@@ -242,9 +245,15 @@ namespace PrjGerenciadorPessoas
                 pessoa = (Pessoa)lstPessoas.Items[i]; //casting
                 listaPessoas.Add(pessoa);
             }
-            json = JsonSerializer.Serialize(listaPessoas,
-                new JsonSerializerOptions { WriteIndented = true }); // é pra fazer a indetação do texto
-                                                                     // deixando organizado linha a limha
+            json = JsonConvert.SerializeObject(listaPessoas, // *  Implementado o cód.p/serealizar o objeto
+                                                             // em jason
+                                                              
+                Formatting.Indented); // *  Formatting.Indented usamos p/fazer
+                                      // indetação organizada linha a linha
+
+
+            //json = JsonSerializer.Serialize(); // é pra fazer a indetação do texto
+            // deixando organizado linha a limha
             return json;
         }
                 

@@ -185,7 +185,16 @@ namespace PrjGerenciadorPessoas
             try
             {                              
                 Directory.CreateDirectory("relatorio"); //crie uma nova pasta fixa do relatório
-                File.WriteAllText("relatorio/relatorio.txt", conteudo);
+               
+                // File.WriteAllText("relatorio/relatorio.txt", conteudo);
+
+                SaveFileDialog salvandoArquivos = new SaveFileDialog();
+                salvandoArquivos.Filter = "Arquivos de Texto(*.txt)|*.txt";
+
+                if (salvandoArquivos.ShowDialog() == DialogResult.OK) 
+                { 
+                    File.WriteAllText(salvandoArquivos.FileName, conteudo);
+                }
 
                 MessageBox.Show($"Relatótio gerado com sucesso no formato {cmb_FormRelatorio.Text}", "Info",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -193,10 +202,10 @@ namespace PrjGerenciadorPessoas
                 ResetForm();
 
             }
-            catch  (DirectoryNotFoundException ex) 
-            {
-                MessageBox.Show($"Houve um erro na criação do relatório. Pasta não encontrada!");
-            }
+            //catch  (DirectoryNotFoundException ex) 
+            //{
+            //    MessageBox.Show($"Houve um erro na criação do relatório. Pasta não encontrada!");
+            //}
             catch (Exception ex)
             { MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); 
             

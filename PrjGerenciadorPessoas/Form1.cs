@@ -183,9 +183,9 @@ namespace PrjGerenciadorPessoas
         private void gerarRelatorio(string conteudo)
         {
             try
-            {
+            {                              
+                Directory.CreateDirectory("relatorio"); //crie uma nova pasta fixa do relatório
                 File.WriteAllText("relatorio/relatorio.txt", conteudo);
-
 
                 MessageBox.Show($"Relatótio gerado com sucesso no formato {cmb_FormRelatorio.Text}", "Info",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
